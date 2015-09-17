@@ -37,7 +37,7 @@ console.log('What is your current location ?');
 
 prompt.start();
 
-prompt.get(['location'],function(error,result){
+prompt.get(['location'],function(err,result){
     userInput = result.location;
     request('https://maps.googleapis.com/maps/api/geocode/json?address='+userInput,function(error,response,body){
         if (!error) {
@@ -53,9 +53,9 @@ prompt.get(['location'],function(error,result){
                     
                     console.log('You are located '+ Math.round(distance) + 'km from the ISS station');
                 } 
-                else console.log('An error has occured.')
+                else console.log('An error has occured: ' + error);
             });
         }
-        else console.log('An error has occured.')
+        else console.log('An error has occured: ' + err);
     });
 });
